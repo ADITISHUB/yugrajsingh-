@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Birthday Yug!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      padding-top: 100px;
+      margin: 0;
+      background: linear-gradient(120deg, #ffe6f0, #fff0f5);
+    }
+    h1 {
+      font-size: 32px;
+      color: #e60073;
+    }
+    p {
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+    button {
+      padding: 20px 40px;
+      font-size: 20px;
+      background-color: #ff66c4;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      box-shadow: 2px 4px 8px rgba(0,0,0,0.3);
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #e60099;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎉 Happy Birthday, Yug! 🎉</h1>
+  <p>Tap the button to feel your birthday song and hear the chime!</p>
+  <button onclick="playChimeAndVibrate()">Play Birthday Vibes</button>
+
+  <!-- Hidden audio element -->
+  <audio id="chime" preload="auto">
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_d1236c9b3e.mp3?filename=birthday-chime-96136.mp3" type="audio/mpeg">
+    Your browser does not support audio.
+  </audio>
+
+  <script>
+    function playChimeAndVibrate() {
+      const chime = document.getElementById('chime');
+
+      // Play chime if allowed
+      chime.currentTime = 0;
+      chime.play().catch((err) => {
+        alert("🔇 Please allow sound or tap again.");
+        console.error(err);
+      });
+
+      // Vibrate birthday song pattern
+      if (navigator.vibrate) {
+        const pattern = [
+          0,    // Start immediately
+          100, 150,   // Hap-
+          100, 150,   // -py
+          300, 150,   // Birth-
+          100, 150,   // -day
+          100, 150,   // to
+          300, 300,   // You
+          300         // Yug!
+        ];
+        navigator.vibrate(pattern);
+      } else {
+        alert("⚠️ Vibration not supported.");
+      }
+    }
+  </script>
+
+</body>
+</html>
